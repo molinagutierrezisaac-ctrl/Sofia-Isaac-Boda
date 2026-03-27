@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Invitación Isaac y Sofía</title>
+
+<style>
+body {
+  margin: 0;
+  background: #f5f0eb;
+  font-family: 'Georgia', serif;
+}
+
+  /* Contenedor principal */
+.container {
+  position: relative;
+  width: 100%;
+}
+
+  /* Imagen de invitación */
+.container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+  /* Contador sobre la imagen */
+  #countdown {
+    position: absolute;
+    top: 50%;   /* altura proporcional */
+    left: 50%;
+    transform: translateX(-50%);
+    color: #a67c52;
+    font-size: 4vw;  /* relativo al ancho de la pantalla */
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+
+  /* Botones invisibles sobre la imagen */
+  .btn-invisible {
+    position: absolute;
+    cursor: pointer;
+    background: rgba(0,0,0,0); /* invisible */
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Imagen de invitación -->
+  <img src="invitacion.png" alt="Invitación Isaac y Sofía">
+
+  <!-- Contador -->
+  <div id="countdown"></div>
+
+  <!-- Botón invisible para música (sobre icono play), ahora reproduce y pausa -->
+<div class="btn-invisible"
+     onclick="toggleAudio()"
+     style="top:23%; left:50%; transform:translateX(-50%); width:7%; height:3%;">
+</div>
+
+<script>
+function toggleAudio() {
+    var audio = document.getElementById('audio');
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
+    }
+}
+</script>
+
+  <!-- Botón invisible para ubicación (sobre icono ubicación) -->
+  <a href="https://maps.app.goo.gl/FT7mFgKbXzcSF8Wh7" target="_blank"
+     class="btn-invisible"
+     style="top:80%; left:70%; transform:translateX(-50%); width:35%; height:2.5%; display:block;">
+  </a>
+
+</div>
+
+<!-- Reproductor de audio -->
+<audio id="audio">
+  <source src="cancion.mp3" type="audio/mpeg">
+  Tu navegador no soporta audio.
+</audio>
+
+<!-- Script contador -->
+<script>
+var countDownDate = new Date("Jul 25, 2026 18:30:00").getTime();
+
+var x = setInterval(function() {
+  var now = new Date().getTime();
+  var distance = countDownDate - now;
+
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+  document.getElementById("countdown").innerHTML =
+    days + " DÍAS " + hours + " HRS " + minutes + " MIN";
+
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("countdown").innerHTML = "¡ES HOY!";
+  }
+}, 1000);
+</script>
+
+</body>
+</html>
